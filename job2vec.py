@@ -9,8 +9,8 @@ from collections import defaultdict
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
 path_raw = 'joblistings.merged.parsed.unique.grpbyyear.2010-2015.01.tsv'
-path_train = 'va_train_clean.csv'
-path_test = 'va_test_clean.csv'
+path_train = 'data/va_train_clean.csv'
+path_test = 'data/va_test_clean.csv'
 
 def get_corpus(fname=path_raw):
     with open(fname) as f:
@@ -49,5 +49,8 @@ if __name__ == '__main__':
     model.train(corpus_train)
     print "Training...Done"
     print "Saving model"
-    model.save("gensim_doc2vec_3_labels")
-    print "Saved model {} in current directory".format("gensim_doc2vec_3_labels")
+    try:
+        model.save("models/gensim_doc2vec_3_labels")
+    except:
+        model.save("gensim_doc2vec_3_labels")
+    print "Saveded!"
